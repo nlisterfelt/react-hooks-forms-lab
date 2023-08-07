@@ -4,7 +4,6 @@ import Filter from "./Filter";
 import Item from "./Item";
 
 function ShoppingList({ items, onItemFormSubmit }) {
-  const search = "Search..."
   const [searchData, setSearchData] = useState({
     search: "",
     filter: "All"
@@ -20,11 +19,7 @@ function ShoppingList({ items, onItemFormSubmit }) {
     const searchNameLower = searchData.search.toLowerCase()
     
     if(searchData.filter==="All"){
-      if(searchData.search === "") {
-        return true
-      } else {
-      return itemNameLower.includes(searchNameLower)
-      }
+      return searchData.search === "" ? true : itemNameLower.includes(searchNameLower)
     } else {
       if(searchData.search === "") {
         return item.category === searchData.filter
@@ -33,11 +28,12 @@ function ShoppingList({ items, onItemFormSubmit }) {
       }
     }
   });
+  
 
   return (
     <div className="ShoppingList">
       <ItemForm onItemFormSubmit={onItemFormSubmit}/>
-      <Filter search={search} onSearchChange={handleSearchChange}/>
+      <Filter search={searchData.search} onSearchChange={handleSearchChange}/>
       <ul className="Items">
         {itemsToDisplay.map((item) => (
           <Item key={item.id} name={item.name} category={item.category} />

@@ -3,9 +3,9 @@ import { v4 as uuid } from "uuid";
 
 function ItemForm({onItemFormSubmit}) {
   const [formData, setFormData] = useState({
+    category: "Produce",
     id: uuid(),
-    name: "",
-    category: "Produce"
+    name: ""
   })
   
 
@@ -15,7 +15,7 @@ function ItemForm({onItemFormSubmit}) {
   }
 
   return (
-    <form className="NewItem">
+    <form className="NewItem" onSubmit={event=>{event.preventDefault(); onItemFormSubmit(formData)}}>
       <label>
         Name:
         <input type="text" name="name" onChange={handleFormChange}/>
@@ -30,7 +30,7 @@ function ItemForm({onItemFormSubmit}) {
         </select>
       </label>
 
-      <button type="submit" onSubmit={e=>onItemFormSubmit(e, formData)}>Add to List</button>
+      <button type="submit" >Add to List</button>
     </form>
   );
 }

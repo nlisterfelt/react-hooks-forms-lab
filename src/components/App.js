@@ -10,12 +10,8 @@ function App() {
   function handleDarkModeClick() {
     setIsDarkMode((isDarkMode) => !isDarkMode);
   }
-
-  function handleItemFormSubmit(event){
-    event.preventDefault()
-    const newItems = [...items]
-    console.log(newItems)
-    setItems(newItems)
+  function handleItemFormSubmit(obj){
+    setItems([...items, obj])
   }
 
   return (
